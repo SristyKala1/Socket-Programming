@@ -1,12 +1,3 @@
-/*Name : Jay Jagtap
-3154037
-Problem Statement: To achieve File transfer using TCP/IP Protocol
-*/
-
-/*
-	Server Side
-	Please pass port no as command line argument
-*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
