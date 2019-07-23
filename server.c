@@ -15,15 +15,15 @@ void error(const char *msg)
 struct pkt
 {
 	int sno;
-	char ch;
+	char ch[1500];
 };
 
 int main(int argc, char *argv[])
 {
-     struct pkt p;
-     int sockfd, newsockfd, portno;
+     struct pkt *p;
+     int sockfd, newsockfd, portno, *val;
      socklen_t clilen;
-     char buffer[255];
+     void * buffer=malloc(1504);
      struct sockaddr_in serv_addr, cli_addr;
      int n;
      if (argc < 2) {
@@ -48,9 +48,16 @@ int main(int argc, char *argv[])
                  &clilen);
      if (newsockfd < 0) 
           error("ERROR on accept");
+	char * ch;
      while(1)
      {
-           ssize_t recvfrom(sockfd,&buffer,0,sizeof(buffer),0,(struct 			sockaddr*) &serv_addr,sizeof(serv_addr));
+	printf("\nready to recv");
+	
+	recv(newsockfd,buffer,5,0);
+	p=buffer;		
+	printf("\nvalues are :%d, %s done\n", p->sno, p->ch);
+
+	break;
      }
      close(newsockfd);
      close(sockfd);
